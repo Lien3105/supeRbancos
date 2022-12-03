@@ -11,11 +11,23 @@
 #' @param tipo_entidad ID del tipo de entidad a consulta. No se puede introducir
 #' al mimo tiempo que 'entidad'. Usa 'tipo_entidad()' para ver todas
 #' las opciones
-#' @return Un dataframe
+#' @return Dataframe con los datos del endpoint consultado
 
 #' @export
 sb_get <- function(api_key, end_point, periodo_inicial, periodo_final = NULL,
                    entidad = NULL, tipo_entidad = NULL){
+
+  ## Exit cuando entidad y tipo de entidad no sean nulas al mismo tiempo
+  if (!is.null(entidad) & !is.null(tipo_entidad)){
+    stop("Se introdujo entidad y tipo de entidad al mismo tiempo.")
+  }
+
+  ## Exit cuanto periodo inicial es posterior al final
+    if (!is.null(periodo_final)){
+      if (lubridate::ym(periodo_inicial) > lubridate::ym(periodo_final)){
+      stop("Se introdujo un periodo inicial posterior al periodo final.")
+    }
+      }
 
   ## Define base_url
   base_url <- "https://apis.sb.gob.do/estadisticas/"
@@ -38,5 +50,10 @@ sb_get <- function(api_key, end_point, periodo_inicial, periodo_final = NULL,
   ## JSON to dataframe
   df <- as.data.frame(df$data)
 
-  return(df)
+  if (!is.null(dim(df))){
+    return(df)
+  } else{
+    stop(paste("No se ha encontrado", end_point, ", revisa la consulta"))
+  }
+
 }

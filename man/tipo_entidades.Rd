@@ -2,10 +2,10 @@
 % Please edit documentation in R/tipo_entidades.R
 \name{tipo_entidades}
 \alias{tipo_entidades}
-\title{Print de los tipos de entidades del API}
+\title{Muestra los codigos de los tipos de entidades para hacer las consultas}
 \usage{
 tipo_entidades()
 }
 \description{
-Print de los tipos de entidades del API
+Muestra los codigos de los tipos de entidades para hacer las consultas
 }

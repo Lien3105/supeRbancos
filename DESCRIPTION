@@ -12,7 +12,8 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.2
 Imports: 
     httr,
-    jsonlite
+    jsonlite,
+    lubridate
 Suggests: 
     dplyr,
     testthat (>= 3.0.0)

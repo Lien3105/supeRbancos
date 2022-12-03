@@ -31,7 +31,7 @@ al mimo tiempo que 'entidad'. Usa 'tipo_entidad()' para ver todas
 las opciones}
 }
 \value{
-Un dataframe
+Dataframe con los datos del endpoint consultado
 }
 \description{
 Esta funcion carga los datos del endpoint solicitado en formato data frame

@@ -1,4 +1,4 @@
-#' Print de los tipos de entidades del API
+#' Muestra los codigos de los tipos de entidades para hacer las consultas
 #' @export
 tipo_entidades <- function(){
   cat("
