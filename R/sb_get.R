@@ -33,7 +33,7 @@ sb_get <- function(api_key, end_point, periodo_inicial, periodo_final = NULL,
   base_url <- "https://apis.sb.gob.do/estadisticas/"
 
   ## Get json
-  response_df <- httr::GET(paste0(base_url, end_point),
+  res <- httr::GET(paste0(base_url, end_point),
             httr::add_headers("Ocp-Apim-Subscription-Key" = api_key),
             query = list(
               periodoInicial = periodo_inicial,
@@ -41,19 +41,30 @@ sb_get <- function(api_key, end_point, periodo_inicial, periodo_final = NULL,
               entidad = entidad,
               tipoEntidad = tipo_entidad),
             encode = "json")
-  print(response_df)
+
+  ## Warning when conection not succeeded
+  if (res$status != 200){
+  warning(paste("Status:", res$status_code))
+  }
 
   ## Parse json to df
-  df <- httr::content(response_df, as = "text", encoding = "UTF-8")
+  df <- httr::content(res, as = "text", encoding = "UTF-8")
   df <- jsonlite::fromJSON(df)
 
   ## JSON to dataframe
   df <- as.data.frame(df$data)
 
-  if (!is.null(dim(df))){
+  ## Crear notin
+  `%notin%` <- Negate(`%in%`)
+
+  if (0 %notin% dim(df)){
     return(df)
   } else{
     stop(paste("No se ha encontrado", end_point, ", revisa la consulta"))
   }
 
 }
+df <- sb_get(api_key = "b0f966428bde45dc913ffd59d88b9dc0",
+       end_point = "captaciones/sector-depositante",
+       periodo_inicial = "2022-01",
+       tipo_entidad = "BM")
