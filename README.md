@@ -18,12 +18,41 @@ data <- sb_get(api_key,...)
 ```
 
 ## Cómo usarlo
+
 ### ¿Cómo era la cartera de créditos por moneda de Banreservas en mayo de 2022?
 ```r
 library(supeRbancos)
 cc_banreservas <- sb_get(api_key, end_point = 'carteras/creditos/moneda',
                          periodo_inicial = "2022-05", periodo_final = "2022-05",
                          entidad = "BANRESERVAS")
+
+cc_banreservas %>%
+  group_by(tipoMoneda, periodo, entidad) %>% 
+  summarize(deuda = sum(deuda)) %>% 
+  ungroup() %>% 
+  select(periodo, 
+          entidad,
+          tipoMoneda,
+          deuda)
 ```
 
 <img src = "man/figure/README-df-cc-banreservas.png" />
+
+### Evolución del total de activos de los bancos múltiples desde enero de 2020 a octubre de 2022
+```r
+activos_bm <- sb_get(api_key, end_point = 'estados/situacion/eif',
+                         periodo_inicial = "2020-05",
+                         tipo_entidad = "BM")
+
+activos_bm %>%
+  filter(entidad == "TODOS",
+         conceptoNivel1 == "Activos",
+         conceptoNivel2 == "TODOS",
+         conceptoNivel3 == "TODOS") %>% 
+  transmute(periodo,
+            tipoEntidad,
+            entidad,
+            total_activos = valor/1000000 #expresar en millones
+            )
+```
+<img src = "man/figure/README-df-activos-bm.png" />
