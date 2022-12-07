@@ -36,7 +36,7 @@ cc_banreservas %>%
           deuda)
 ```
 
-<img src = "man/figure/README-df-cc-banreservas.png" />
+<img src = "man/figure/README-df-cc-banreservas.png" class = "center" />
 
 ### Evolución del total de activos de los bancos múltiples desde enero de 2020 a octubre de 2022
 ```r
@@ -55,4 +55,4 @@ activos_bm %>%
             total_activos = valor/1000000 #expresar en millones
             )
 ```
-<img src = "man/figure/README-df-activos-bm.png" />
+<img src = "man/figure/README-df-activos-bm.png" class = "center" />
