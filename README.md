@@ -26,4 +26,4 @@ cc_banreservas <- sb_get(api_key, end_point = 'carteras/creditos/moneda',
                          entidad = "BANRESERVAS")
 ```
 
-<img src = "man/figures/README-df-cc-banreservas.png" />
+<img src = "man/figure/README-df-cc-banreservas.png" />
