@@ -55,5 +55,5 @@ entidades <- function(){
   UNION = Banco de Ahorro y Crédito Unión, S. A.\n
   VIMENCA = Banco Múltiple Vimenca, S. A.\n
       "
-      )
+    )
 }

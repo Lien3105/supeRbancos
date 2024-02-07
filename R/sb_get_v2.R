@@ -25,7 +25,7 @@
 #' @export
 sb_get_v2 <- function(api_key, end_point, periodo_inicial, periodo_final = NULL,
                    entidad = NULL, tipo_entidad = NULL, paginas=1,
-                   registros = 100, delay = NULL){
+                   registros = 100){
 
   ## Exit cuando entidad y tipo de entidad no sean nulas al mismo tiempo
   if (!is.null(entidad) & !is.null(tipo_entidad)){
